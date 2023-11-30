@@ -39,3 +39,5 @@ traitlets==5.9.0
 tzdata==2023.3
 wcwidth==0.2.8
 whitenoise==6.5.0
+xhtml2pdf==0.2.11
+xyzservices==2023.7.0

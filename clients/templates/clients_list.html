@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Clientes
+{% endblock %}
+
+{% block headerpage %}
+Clientes
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="table-header">
+        <div class="search-container">
+            <form method="GET" action="{% url 'clients:clients' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="add-button">
+            <button>
+                <a href={%url 'clients:add_client' %} style="color:white">Agregar</a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center;">Nombre</th>
+                    <th scope="col" style="text-align: center;">Apellidos</th>
+                    <th scope="col" style="text-align: center;">C.I</th>
+                    <th scope="col" style="text-align: center;">RIF</th>
+                    <th scope="col" style="text-align: center;">Direccion</th>
+                    <th scope="col" style="text-align: center;">Telefono</th>
+                    <th scope="col" style="text-align: center;">Email</th>
+                    <th scope="col" style="text-align: center;">Otros Datos</th>
+                    <th scope="col" style="text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td style="text-align: center;">{{ client.name }}</td>
+                    <td style="text-align: center;">{{ client.last_name }}</td>
+                    <td style="text-align: center;">{{ client.ci }}</td>
+                    {% if client.rif is None%}
+                    <td style="text-align: center;">-</td>
+                    {% else %}
+                    <td style="text-align: center;">{{ client.rif }}</td>
+                    {%endif%}
+                    <td style="text-align: center;">{{ client.address }}</td>
+                    <td style="text-align: center;">{{ client.phone }}</td>
+                    <td style="text-align: center;">{{ client.email }}</td>
+                    {% if client.others_datas is None%}
+                    <td style="text-align: center;">-</td>
+                    {% else%}
+                    <td style="text-align: center;">{{ client.others_datas }}</td>
+                    {%endif%}
+                    <td style="text-align: center;">
+                        <a href="{% url 'clients:update_client' client.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'clients:delete_client' client.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" style="text-align: center;">No se encontraron clientes.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-container">
+        <button id="prev-page-btn" class="btn btn-secondary btn-sm">Previous</button>
+        <button id="next-page-btn" class="btn btn-secondary btn-sm">Next</button>
+    </div>
+</div>
+{% endblock %}

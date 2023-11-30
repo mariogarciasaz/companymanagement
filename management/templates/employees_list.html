@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Empleados
+{% endblock %}
+
+{% block headerpage %}
+Empleados
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="table-header">
+        <div class="search-container">
+            <form method="GET" action="{% url 'management:invoices' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="add-button">
+            <button>
+                <a href={%url 'management:add_employee' %} style="color:white">Agregar</a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center;">Nombre</th>
+                    <th scope="col" style="text-align: center;">Apellidos</th>
+                    <th scope="col" style="text-align: center;">Categoria</th>
+                    <th scope="col" style="text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td style="text-align: center;">{{ employee.name }}</td>
+                    <td style="text-align: center;">{{ employee.last_name }}</td>
+                    <td style="text-align: center;">{{ employee.category }}</td>
+                    <td style="text-align: center;">
+                        <a href="{% url 'management:update_employee' employee.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'management:delete_employee' employee.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" style="text-align: center;">No se encontraron empleados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-container">
+        <button id="prev-page-btn" class="btn btn-secondary btn-sm">Previous</button>
+        <button id="next-page-btn" class="btn btn-secondary btn-sm">Next</button>
+    </div>
+</div>
+{% endblock %}

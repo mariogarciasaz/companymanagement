@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Categorias
+{% endblock %}
+
+{% block headerpage %}
+Categorias
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="table-header">
+        <div class="search-container">
+            <form method="GET" action="{% url 'management:categories' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="add-button">
+            <button>
+                <a href={%url 'management:add_category' %} style="color:white">Agregar</a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center;">Nombre</th>
+                    <th scope="col" style="text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td style="text-align: center;">{{ category.name }}</td>
+                    <td style="text-align: center;">
+                        <a href="{% url 'management:update_category' category.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'management:delete_category' category.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" style="text-align: center;">No se encontraron categorias.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-container">
+        <button id="prev-page-btn" class="btn btn-secondary btn-sm">Previous</button>
+        <button id="next-page-btn" class="btn btn-secondary btn-sm">Next</button>
+    </div>
+</div>
+{% endblock %}

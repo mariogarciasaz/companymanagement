@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Facturas
+{% endblock %}
+
+{% block headerpage %}
+Facturas
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 text-center">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5 style="text-align: center;">Facturas Totales</h5>
+                    <h6 style="text-align: center;">{{ total_invoices }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5 style="text-align: center;">Facturas Pagadas</h5>
+                    <h6 style="text-align: center;">{{ paid_invoices }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5 style="text-align: center;">Facturas Pendientes</h5>
+                    <h6 style="text-align: center;">{{ pending_invoices }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5 style="text-align: center;">Facturas Expiradas</h5>
+                    <h6 style="text-align: center;color: red;">{{ expired_invoices }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid mt-5">
+    <div class="table-header">
+        <div class="search-container">
+            <form method="GET" action="{% url 'management:invoices' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="filter-container">
+            <form action="{% url 'management:invoices' %}" method="get" class="d-flex align-items-center">
+                <label for="year" class="mr-2">Seleccione el año:</label>
+                <select name="year" id="year" class="form-control mr-2">
+                    {% for year in years %}
+                        <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </form>
+        </div>
+
+        <div class="filter-container">
+            <form method="get" action="{% url 'management:generate_report' %}">
+                <label for="year">Año:</label>
+                <select class="form-select-sm" name="year" id="year">
+                    <option value="">Seleccione el año:</option>
+                    {% for year in years %}
+                    <option value="{{ year }}" {% if year == request.GET.year %}selected{% endif %}>{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary">Generar Reporte</button>
+            </form>
+        </div>
+        
+
+        <div class="add-button">
+            <button>
+                <a href={%url 'management:add_invoice' %} style="color:white">Agregar</a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center;">Cliente</th>
+                    <th scope="col" style="text-align: center;">Coche</th>
+                    <th scope="col" style="text-align: center;">Modelo</th>
+                    <th scope="col" style="text-align: center;">N.Factura</th>
+                    <th scope="col" style="text-align: center;">Fecha de Factura</th>
+                    <th scope="col" style="text-align: center;">Total</th>
+                    <th scope="col" style="text-align: center;">Pagada</th>
+                    <th scope="col" style="text-align: center;">Estado</th>
+                    <th scope="col" style="text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                <tr>
+                    <td style="text-align: center;">{{ invoice.client }}</td>
+                    <td style="text-align: center;">{{ invoice.client_car }}</td>
+                    <td style="text-align: center;">{{ invoice.client_car_model }}</td>
+                    <td style="text-align: center;">{{ invoice.invoice_number }}</td>
+                    <td style="text-align: center;">{{ invoice.invoice_date }}</td>
+                    <td style="text-align: center;">{{ invoice.total }} $</td>
+                    {% if invoice.paid is False %}
+                        <td style="text-align: center;">No</td>
+                    {% else %}
+                        <td style="text-align: center;">Si</td>
+                    {%endif%}
+                    <td style="text-align: center;">{{ invoice.state }}</td>
+                    <td style="text-align: center;">
+                        <a href="{% url 'management:view_invoice' invoice.id %}" class="btn btn-success btn-sm">Ver/Imprimir Factura</a>
+                        <a href="{% url 'management:update_invoice' invoice.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'management:delete_invoice' invoice.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" style="text-align: center;">No se encontraron facturas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-container">
+        <button id="prev-page-btn" class="btn btn-secondary btn-sm">Previous</button>
+        <button id="next-page-btn" class="btn btn-secondary btn-sm">Next</button>
+    </div>
+</div>
+{% endblock %}

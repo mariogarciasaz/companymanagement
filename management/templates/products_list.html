@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Stock
+{% endblock %}
+
+{% block headerpage %}
+Stock
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 text-center">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5 style="text-align: center;">Productos totales</h5>
+                    <h6 style="text-align: center;">{{ total_products }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5 style="text-align: center;">Producto a punto de agotarse</h5>
+                    <h6 style="text-align: center;">{{ total_out_stock2 }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5 style="text-align: center;">Producto sin Stock</h5>
+                    <h6 style="text-align: center; color: red;">{{ total_out_stock }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid mt-5">
+    <div class="table-header">
+        <div class="search-container">
+            <form method="GET" action="{% url 'management:products' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" placeholder="Buscar...">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="add-button">
+            <button>
+                <a href={%url 'management:add_product' %} style="color:white">Agregar</a>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center;">Nombre</th>
+                    <th scope="col" style="text-align: center;">Categoria</th>
+                    <th scope="col" style="text-align: center;">Precio</th>
+                    <th scope="col" style="text-align: center;">Cantidad</th>
+                    <th scope="col" style="text-align: center;">Descripcion</th>
+                    <th scope="col" style="text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td style="text-align: center;">{{ product.name }}</td>
+                    {% if product.category == None%}
+                        <td style="text-align: center;">Sin Categoria</td>
+                    {% else %}
+                        <td style="text-align: center;">{{ product.category }}</td>
+                    {% endif %}
+                    <td style="text-align: center;">{{ product.price }} $</td>
+                    <td style="text-align: center;">{{ product.quantity }}</td>
+                    <td style="text-align: center;">{{ product.description }}</td>
+                    <td style="text-align: center;">
+                        <a href="{% url 'management:update_product' product.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'management:delete_product' product.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="9" style="text-align: center;">No se encontro stock disponible.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination-container">
+        <button id="prev-page-btn" class="btn btn-secondary btn-sm">Previous</button>
+        <button id="next-page-btn" class="btn btn-secondary btn-sm">Next</button>
+    </div>
+</div>
+{% endblock %}

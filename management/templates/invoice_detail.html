@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Factura {{object.invoice_number}}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container-fluid mt5">
+    <form method="post">
+        {% csrf_token %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-fluid mt-5">
+                    <!-- Content Header (Page header) -->
+                    
+
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+
+
+                                    <!-- Main content -->
+                                    <div class="invoice p-3 mb-3">
+                                        <!-- title row -->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="text-center">Factura</h4>
+                                                <h4>
+                                                    <img src="{% static 'dist\img\logo.png' %}" alt="Logo" width="60" height="30"> Top Cauchos C.A
+                                                    <small class="float-right">Fecha: {{object.invoice_date}}</small>
+                                                </h4>
+                                                
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- info row -->
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-4 invoice-col">
+                                                <strong>Empresa</strong>
+                                                <address>
+                                                    Top Cauchos C.A<br>
+                                                    Av. Romulo Gallegos, Miranda<br>
+                                                    Caracas, VE <br>
+                                                    Phone: +58 212-2838253<br>
+                                                    Email: neumaticostop3000@gmail.com
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                <strong>Cliente</strong>
+                                                <address>
+                                                    Nombre: {{object.client}}<br>
+                                                    Coche: {{object.client_car}}<br>
+                                                    Modelo: {{object.client_car_model}}<br>
+                                                    Direccion: {{object.client_address}}<br>
+                                                    Telefono: {{object.client_phone}}<br>
+                                                    Email: {{object.client_email}}
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                <b>Factura {{object.invoice_number}}</b><br>
+                                                <br>
+                                                <b>Fecha Expiracion:</b> {{object.invoice_due_date}}<br>
+                                                
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <!-- Table row -->
+                                        <div class="row">
+                                            <div class="col-12 table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><label for="line_one_quantity">Cantidad</label></th>
+                                                            <th><label for="line_one">Producto</label></th>
+                                                            <th><label for="line_one_unit_price">Precio Unidad</label></th>
+                                                            <th><label for="line_one_total_price">Total</label></th>
+                                                            
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="lineas-producto">
+                                                        <tr class="lineas-producto">
+                                                            {% if object.line_one_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_one_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_one is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_one}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_one_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_one_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_one_total_price == None %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_one_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_two_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_two_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_two is None%}
+                                                            {% else %}
+                                                                <td>{{object.line_two}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_two_unit_price == 0.00 %}
+                                                            {% endif %}
+                                                            {% if object.line_two_unit_price == None %}
+                                                            {% else %}
+                                                                <td>{{object.line_two_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_two_total_price == None %}
+                                                            {% endif %}
+                                                            {% if object.line_two_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_two_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_three_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_three_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_three is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_three}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_three_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_three_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_three_total_price == None %}
+                                                            {% endif %}
+                                                            {% if object.line_three_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_three_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_four_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_four_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_four is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_four}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_four_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_four_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_four_total_price == None %}
+                                                            {% endif %}
+                                                            {% if object.line_four_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_four_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_five_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_five_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_five is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_five}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_five_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_five_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_five_total_price == None %}
+                                                            {% endif %}
+                                                            {% if object.line_five_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_five_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_six_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_six_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_six is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_six}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_six_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_six_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_six_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_six_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_seven_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_seven_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_seven is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_seven}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_seven_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_seven_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_seven_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_seven_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_eight_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_eight_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_eight is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_eight}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_eight_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_eight_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_eight_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_eight_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_nine_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_nine_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_nine is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_nine}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_nine_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_nine_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_nine_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_nine_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            {% if object.line_ten_quantity is 0 %}
+                                                            {% else %}
+                                                                <td>{{object.line_ten_quantity}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_ten is None %}
+                                                            {% else %}
+                                                                <td>{{object.line_ten}}</td>
+                                                            {% endif %}
+                                                            {% if object.line_ten_unit_price == 0.00 %}
+                                                            {% else %}
+                                                                <td>{{object.line_ten_unit_price}} $</td>
+                                                            {% endif %}
+                                                            {% if object.line_ten_total_price == 0.00 %}
+                                                            {% else %}
+                                                                <td><span class="line_amount">{{ object.line_ten_total_price }}</span> $</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+                                        <hr>
+                                        <div class="row">
+                                            <!-- accepted payments column -->
+                                            <div class="col-6">
+                                                <p class="text-muted well well-sm shadow-none"
+                                                    style="margin-top: 10px;">
+                                                    <strong>Por favor, conserve esta factura hasta que su vehiculo sea retirado de nuestras instalaciones, no sera posible retirar el vehiculo si no se presenta dicha factura.</strong>
+                                                </p>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-6">
+                                                <p class="lead"></p>
+
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <th style="width:50%"><label for="subtotal">Subtotal:</label></th>
+                                                            <td>{{object.subtotal}} $</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="vat">VAT</label></th>
+                                                            <td>{{object.vat}} %</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="discount">Descuento:</label></th>
+                                                            <td>{{object.discount}} %</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="total">Total:</label></th>
+                                                            <td>{{object.total}} $</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="total">Pagada:</label></th>
+                                                            {% if object.paid == False %}
+                                                            <td>No</td>
+                                                            {% else %}
+                                                            <td>Si</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <!-- this row will not appear when printing -->
+                                        <div class="row no-print">
+                                            <button type="button" id="btnImprimir" class="btn btn-primary">Imprimir Factura</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.invoice -->
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+                <!-- Control Sidebar -->
+                <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                </aside>
+                <!-- /.control-sidebar -->
+            </div>
+            <!-- ./wrapper -->
+    </form>
+</div>
+
+<script>
+    // Agrega un evento al botón para ejecutar la impresión
+    document.getElementById('btnImprimir').addEventListener('click', function() {
+        window.print();
+    });
+</script>
+{% endblock %}

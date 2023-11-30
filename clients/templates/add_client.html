@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Agregar Cliente
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .form-container {
+        max-width: 700px;
+        max-height: 850px;
+        margin: 0 auto;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .banner-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        opacity: 70%;
+    }
+
+    form {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    form div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    form input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    form button[type="submit"] {
+        grid-column: span 2;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+</style>
+
+<div class="form-container">
+    <img class="banner-image" src="{% static 'dist/img/addclient.jpg' %}" alt="Imagen de banner">
+    <br>
+    <br>
+    <h4 style="text-align: center; text-decoration: underline;">Add Client</h4>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="name_client">Nombre:</label>
+            {{ form.name }}
+        </div>
+        <div>
+            <label for="last_name">Apellidos:</label>
+            {{ form.last_name }}
+        </div>
+        <div>
+            <label for="email">Cedula:</label>
+            {{ form.ci }}
+        </div>
+        <div>
+            <label for="phone">Rif:</label>
+            {{ form.rif }}
+        </div>
+        <div>
+            <label for="address">Telefono:</label>
+            {{ form.phone }}
+        </div>
+        <div>
+            <label for="City">Email:</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label for="state">Direccion:</label>
+            {{ form.address }}
+        </div>
+        <div>
+            <label for="state">Otros Datos:</label>
+            {{ form.others_datas }}
+        </div>
+
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+{% endblock %}

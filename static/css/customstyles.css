@@ -1,0 +1,103 @@
+    /* Reset de márgenes y paddings */
+    body,
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hace que los elementos utilicen la totalidad de su contenedor */
+    html,
+    body,
+    .container {
+        height: 100%;
+    }
+
+    /* Estilos para la tabla */
+    .container {
+        display: flex;
+        flex-direction: column;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #e5e5e5;
+    }
+
+    /* Estilos para la cabecera de la tabla */
+    .table-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    /* Estilos para el botón de agregar */
+    .add-button button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .add-button button span {
+        margin-right: 5px;
+    }
+
+    .add-button button svg {
+        width: 16px;
+        height: 16px;
+        stroke-width: 2;
+        vertical-align: middle;
+    }
+
+    /* Estilos para el campo de búsqueda */
+    .search-container {
+        margin-right: 10px;
+    }
+
+    .search-container .form-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-container input {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+
+    

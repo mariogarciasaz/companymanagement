@@ -1,0 +1,703 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Agregar Factura
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container-fluid mt5">
+    <form method="post">
+        {% csrf_token %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-fluid mt-5">
+                    <!-- Content Header (Page header) -->
+                    
+
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+
+
+                                    <!-- Main content -->
+                                    <div class="invoice p-3 mb-3">
+                                        <!-- title row -->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="text-center">Factura</h4>
+                                                <h4>
+                                                    <img src="{% static 'dist\img\LOGO_TOPCAUCHOS.svg' %}" alt="Logo" width="60" height="30"> Top Cauchos C.A
+                                                    <small class="float-right">Fecha: {{form.invoice_date}}</small>
+                                                </h4>
+                                                
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- info row -->
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-4 invoice-col">
+                                                <strong>Empresa</strong>
+                                                <address>
+                                                    Top Cauchos C.A<br>
+                                                    Av. Romulo Gallegos, Miranda<br>
+                                                    Caracas, VE <br>
+                                                    Phone: +58 212-2838253<br>
+                                                    Email: neumaticostop3000@gmail.com
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                <strong>Cliente</strong>
+                                                <address>
+                                                    Nombre: {{form.client}}<br>
+                                                    Coche: {{form.client_car}}<br>
+                                                    Modelo: {{form.client_car_model}}<br>
+                                                    Direccion: {{form.client_address}}<br>
+                                                    Telefono: {{form.client_phone}}<br>
+                                                    Email: {{form.client_email}}
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                <b>Factura {{form.invoice_number}}</b><br>
+                                                <br>
+                                                <b>Fecha Expiracion:</b> {{form.invoice_due_date}}<br>
+                                                
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <!-- Table row -->
+                                        <div class="row">
+                                            <div class="col-12 table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><label for="line_one_quantity">Cantidad</label></th>
+                                                            <th><label for="line_one">Producto</label></th>
+                                                            <th><label for="line_one_unit_price">Precio Unidad</label></th>
+                                                            <th><label for="line_one_total_price">Total</label></th>
+                                                            
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="lineas-producto">
+                                                        <tr class="lineas-producto">
+                                                            <td>{{form.line_one_quantity}}</td>
+                                                            <td>{{form.line_one}}</td>
+                                                            <td>{{form.line_one_unit_price}} $</td>
+                                                            <td>{{ form.line_one_total_price }} $</td>
+                                                            
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_two_quantity}}</td>
+                                                            <td>{{form.line_two}}</td>
+                                                            <td>{{form.line_two_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_two_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_three_quantity}}</td>
+                                                            <td>{{form.line_three}}</td>
+                                                            <td>{{form.line_three_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_three_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_four_quantity}}</td>
+                                                            <td>{{form.line_four}}</td>
+                                                            <td>{{form.line_four_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_four_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_five_quantity}}</td>
+                                                            <td>{{form.line_five}}</td>
+                                                            <td>{{form.line_five_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_five_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_six_quantity}}</td>
+                                                            <td>{{form.line_six}}</td>
+                                                            <td>{{form.line_six_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_six_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_seven_quantity}}</td>
+                                                            <td>{{form.line_seven}}</td>
+                                                            <td>{{form.line_seven_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_seven_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_eight_quantity}}</td>
+                                                            <td>{{form.line_eight}}</td>
+                                                            <td>{{form.line_eight_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_eight_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_nine_quantity}}</td>
+                                                            <td>{{form.line_nine}}</td>
+                                                            <td>{{form.line_nine_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_nine_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_ten_quantity}}</td>
+                                                            <td>{{form.line_ten}}</td>
+                                                            <td>{{form.line_ten_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_ten_total_price }}</span> $</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <div class="row">
+                                            <!-- accepted payments column -->
+                                            <div class="col-6">
+                                                <p class="text-muted well well-sm shadow-none"
+                                                    style="margin-top: 10px;">
+                                                    <strong>Por favor, conserve esta factura hasta que su vehiculo sea retirado de nuestras instalaciones, no sera posible retirar el vehiculo si no se presenta dicha factura.</strong>
+                                                </p>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-6">
+                                                <p class="lead"></p>
+
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <th style="width:50%"><label for="subtotal">Subtotal:</label></th>
+                                                            <td>{{form.subtotal}} $</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="vat">VAT</label></th>
+                                                            <td>{{form.vat}} %</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="discount">Descuento:</label></th>
+                                                            <td>{{form.discount}} %</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="total">Total:</label></th>
+                                                            <td>{{form.total}} $</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="total">Pagada:</label></th>
+                                                            <td>{{form.paid}}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <!-- this row will not appear when printing -->
+                                        <div class="row no-print">
+                                            <div class="col-12">
+                                                <button type="submit" style="margin-right: 5px;" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.invoice -->
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+                <!-- Control Sidebar -->
+                <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                </aside>
+                <!-- /.control-sidebar -->
+            </div>
+            <!-- ./wrapper -->
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+        var address_client = $('#id_client_address');
+        var phone_client = $('#id_client_phone');
+        var email_client = $('#id_client_email');
+
+        $('#id_client').on('change', function() {
+            var clientId = $(this).val(); // Obtén el ID del cliente seleccionado
+            if (clientId === '') {
+                // Si no se selecciona un cliente, restaura la dirección y el teléfono de este
+                address_client.val('');
+                phone_client.val('');
+                email_client.val('');
+            } else {
+                // Realiza una petición AJAX para obtener la dirección y el teléfono del cliente
+                $.ajax({
+                    url: '/management/get_client_data/' + clientId + '/',  // Ruta a tu vista Django para obtener la dirección y el teléfono
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza la dirección y el teléfono en la página
+                        address_client.val(response.client_address);
+                        phone_client.val(response.client_phone);
+                        email_client.val(response.client_email);
+                    },
+                    error: function() {
+                        console.log("No se actualizó la dirección y el teléfono")
+                    }
+                });
+            updateDataClient();
+            }
+            console.log('address:',address)
+        });
+
+
+        function updateDataClient(){
+            var invoice_client_address = document.getElementById("id_client_address").value;
+            var invoice_client_phone = document.getElementById("id_client_phone").value;
+            var invoice_client_email = document.getElementById("id_client_email").value;
+        }
+
+        $('#id_id_client').change(function(){
+            updateDataClient();
+        });
+
+
+
+        var unitPriceElement_one = $('#id_line_one_unit_price');
+        var unitPriceElement_two = $('#id_line_two_unit_price');
+        var unitPriceElement_three = $('#id_line_three_unit_price');
+        var unitPriceElement_four = $('#id_line_four_unit_price');
+        var unitPriceElement_five = $('#id_line_five_unit_price');
+        var unitPriceElement_six = $('#id_line_six_unit_price');
+        var unitPriceElement_seven = $('#id_line_seven_unit_price');
+        var unitPriceElement_eight = $('#id_line_eight_unit_price');
+        var unitPriceElement_nine = $('#id_line_nine_unit_price');
+        var unitPriceElement_ten = $('#id_line_ten_unit_price');
+
+        $('#id_line_one').on('change', function() {
+            var productId_one = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_one === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_one.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_one + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_one.val(response.unit_price);
+
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            updateTotals();
+            }
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_one').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_one.val(0);
+            updateTotals();
+        });
+
+
+        $('#id_line_two').on('change', function() {
+            var productId_two = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_two === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_two.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_two + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_two.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_two').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_two.val(0);
+            updateTotals();
+        });
+
+
+
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto3)
+        $('#id_line_three').on('change', function() {
+            var productId_three = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_three === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_three.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_three + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_three.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_three').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_three.val(0);
+            updateTotals();
+        });
+
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto4)
+        $('#id_line_four').on('change', function() {
+            var productId_four = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_four === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_four.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_four + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_four.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_four').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_four.val(0);
+            updateTotals();
+        });
+
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto5)
+        $('#id_line_five').on('change', function() {
+            var productId_five = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_five === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_five.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_five + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_five.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_five').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_five.val(0);
+            updateTotals();
+        });
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto6)
+        $('#id_line_six').on('change', function() {
+            var productId_six = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_six === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_six.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_six + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_six.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_six').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_six.val(0);
+            updateTotals();
+        });
+
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto7)
+        $('#id_line_seven').on('change', function() {
+            var productId_seven = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_seven === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_seven.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_seven + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_seven.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_seven').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_seven.val(0);
+            updateTotals();
+        });
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto8)
+        $('#id_line_eight').on('change', function() {
+            var productId_eight = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_eight === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_eight.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_eight + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_eight.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_eight').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_eight.val(0);
+            updateTotals();
+        });
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto9)
+        $('#id_line_nine').on('change', function() {
+            var productId_nine = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_nine === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_nine.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_nine + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_nine.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_nine').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_nine.val(0);
+            updateTotals();
+        });
+
+
+
+
+
+        // Maneja el evento de cambio en el campo de selección (producto10)
+        $('#id_line_ten').on('change', function() {
+            var productId_ten = $(this).val(); // Obtén el ID del producto seleccionado
+            if (productId_ten === '') {
+                // Si no se selecciona un producto, restaura el precio unitario original
+                unitPriceElement_ten.val(0);
+            } else {
+                // Realiza una petición AJAX para obtener el precio del producto
+                $.ajax({
+                    url: '/management/get_product_price/' + productId_ten + '/',  // Ruta a tu vista Django para obtener el precio
+                    method: 'GET',
+                    success: function(response) {
+                        // Actualiza el precio unitario en la página
+                        unitPriceElement_ten.val(response.unit_price);
+                    },
+                    error: function() {
+                        console.log("No se actualizó el precio")
+                    }
+                });
+            }
+            updateTotals();
+        });
+
+        // Maneja el evento de cambio en el campo para quitar el producto
+        $('#id_line_ten').on('clear', function() {
+            // Restablece el precio unitario al valor original al quitar un producto
+            unitPriceElement_ten.val(0);
+            updateTotals();
+        });
+
+
+
+
+
+        var vat = document.getElementById('id_vat').value = 0
+        var discount = document.getElementById('id_discount').value = 0
+
+
+
+        function updateTotals() {
+            var qty_one = parseFloat(document.getElementById('id_line_one_quantity').value);
+            var price_one = parseFloat(document.getElementById('id_line_one_unit_price').value);
+            var total_one = qty_one * price_one;
+            document.getElementById('id_line_one_total_price').value = total_one.toFixed(2);
+    
+            var qty_two = parseFloat(document.getElementById('id_line_two_quantity').value);
+            var price_two = parseFloat(document.getElementById('id_line_two_unit_price').value);
+            var total_two = qty_two * price_two;
+            document.getElementById('id_line_two_total_price').value = total_two.toFixed(2);
+
+            var qty_three = parseFloat(document.getElementById('id_line_three_quantity').value);
+            var price_three = parseFloat(document.getElementById('id_line_three_unit_price').value);
+            var total_three = qty_three * price_three;
+            document.getElementById('id_line_three_total_price').value = total_three.toFixed(2);
+
+            var qty_four = parseFloat(document.getElementById('id_line_four_quantity').value);
+            var price_four = parseFloat(document.getElementById('id_line_four_unit_price').value);
+            var total_four = qty_four * price_four;
+            document.getElementById('id_line_four_total_price').value = total_four.toFixed(2);
+
+            var qty_five = parseFloat(document.getElementById('id_line_five_quantity').value);
+            var price_five = parseFloat(document.getElementById('id_line_five_unit_price').value);
+            var total_five = qty_five * price_five;
+            document.getElementById('id_line_five_total_price').value = total_five.toFixed(2);
+
+            var qty_six = parseFloat(document.getElementById('id_line_six_quantity').value);
+            var price_six = parseFloat(document.getElementById('id_line_six_unit_price').value);
+            var total_six = qty_six * price_six;
+            document.getElementById('id_line_six_total_price').value = total_six.toFixed(2);
+
+            var qty_seven = parseFloat(document.getElementById('id_line_seven_quantity').value);
+            var price_seven = parseFloat(document.getElementById('id_line_seven_unit_price').value);
+            var total_seven = qty_seven * price_seven;
+            document.getElementById('id_line_seven_total_price').value = total_seven.toFixed(2);
+
+            var qty_eight = parseFloat(document.getElementById('id_line_eight_quantity').value);
+            var price_eight = parseFloat(document.getElementById('id_line_eight_unit_price').value);
+            var total_eight = qty_eight * price_eight;
+            document.getElementById('id_line_eight_total_price').value = total_eight.toFixed(2);
+
+            var qty_nine = parseFloat(document.getElementById('id_line_nine_quantity').value);
+            var price_nine = parseFloat(document.getElementById('id_line_nine_unit_price').value);
+            var total_nine = qty_nine * price_nine;
+            document.getElementById('id_line_nine_total_price').value = total_nine.toFixed(2);
+
+            var qty_ten = parseFloat(document.getElementById('id_line_ten_quantity').value);
+            var price_ten = parseFloat(document.getElementById('id_line_ten_unit_price').value);
+            var total_ten = qty_ten * price_ten;
+            document.getElementById('id_line_ten_total_price').value = total_ten.toFixed(2);
+    
+            
+    
+            var subtotal = total_one + total_two + total_three + total_four + total_five + total_six + total_seven + total_eight + total_nine + total_ten
+            document.getElementById('id_subtotal').value = subtotal.toFixed(2);
+
+            var vat = parseFloat(document.getElementById('id_vat').value);
+            var discount = parseFloat(document.getElementById('id_discount').value);
+            var total = subtotal + (subtotal * vat / 100) - (subtotal * discount / 100)
+            document.getElementById('id_total').value = total.toFixed(2);
+        }
+    
+        updateTotals();
+    
+        $('#id_line_one_quantity, #id_line_one_unit_price, #id_line_two_quantity, #id_line_two_unit_price, #id_line_three_quantity, #id_line_three_unit_price, #id_line_four_quantity, #id_line_four_unit_price, #id_line_five_quantity, #id_line_five_unit_price, #id_line_six_quantity, #id_line_six_unit_price, #id_line_seven_quantity, #id_line_seven_unit_price, #id_line_eight_quantity, #id_line_eight_unit_price, #id_line_nine_quantity, #id_line_nine_unit_price, #id_line_ten_quantity, #id_line_ten_unit_price, #id_subtotal, #id_vat, #id_discount').keyup(function () {
+            updateTotals();
+        });
+        
+        setInterval(updateTotals, 1000);
+    });
+    
+
+
+</script>
+
+
+
+{% endblock %}

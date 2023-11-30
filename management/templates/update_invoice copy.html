@@ -1,0 +1,500 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Editar Factura
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container-fluid mt5">
+    <form method="post">
+        {% csrf_token %}
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-fluid mt-5">
+                    <!-- Content Header (Page header) -->
+                    
+
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+
+
+                                    <!-- Main content -->
+                                    <div class="invoice p-3 mb-3">
+                                        <!-- title row -->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="text-center">Factura</h4>
+                                                <h4>
+                                                    <img src="{% static 'dist\img\LOGO_TOPCAUCHOS.svg' %}" alt="Logo" width="60" height="30"> Top Cauchos C.A
+                                                    <small class="float-right">Fecha: {{form.invoice_date}}</small>
+                                                </h4>
+                                                
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- info row -->
+                                        <div class="row invoice-info">
+                                            <div class="col-sm-4 invoice-col">
+                                                <strong>Empresa</strong>
+                                                <address>
+                                                    Top Cauchos C.A<br>
+                                                    Av. Romulo Gallegos, Miranda<br>
+                                                    Caracas, VE <br>
+                                                    Phone: +58 212-2838253<br>
+                                                    Email: neumaticostop3000@gmail.com
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                <strong>Cliente</strong>
+                                                <address>
+                                                    Nombre: {{form.client}}<br>
+                                                    Coche: {{form.client_car}}<br>
+                                                    Modelo: {{form.client_car_model}}<br>
+                                                    Direccion: {{form.client_address}}<br>
+                                                    Telefono: {{form.client_phone}}<br>
+                                                    Email: {{form.client_email}}
+                                                </address>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-4 invoice-col">
+                                                <b>Factura {{form.invoice_number}}</b><br>
+                                                <br>
+                                                <b>Fecha Expiracion:</b> {{form.invoice_due_date}}<br>
+                                                
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <!-- Table row -->
+                                        <div class="row">
+                                            <div class="col-12 table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th><label for="line_one_quantity">Cantidad</label></th>
+                                                            <th><label for="line_one">Producto</label></th>
+                                                            <th><label for="line_one_unit_price">Precio Unidad</label></th>
+                                                            <th><label for="line_one_total_price">Total</label></th>
+                                                            
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="lineas-producto">
+                                                        <tr class="lineas-producto">
+                                                            <td>{{form.line_one_quantity}}</td>
+                                                            <td>{{form.line_one}}</td>
+                                                            <td>{{form.line_one_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_one_total_price }}</span> $</td>
+                                                            
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_two_quantity}}</td>
+                                                            <td>{{form.line_two}}</td>
+                                                            <td>{{form.line_two_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_two_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_three_quantity}}</td>
+                                                            <td>{{form.line_three}}</td>
+                                                            <td>{{form.line_three_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_three_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_four_quantity}}</td>
+                                                            <td>{{form.line_four}}</td>
+                                                            <td>{{form.line_four_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_four_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_five_quantity}}</td>
+                                                            <td>{{form.line_five}}</td>
+                                                            <td>{{form.line_five_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_five_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_six_quantity}}</td>
+                                                            <td>{{form.line_six}}</td>
+                                                            <td>{{form.line_six_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_six_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_seven_quantity}}</td>
+                                                            <td>{{form.line_seven}}</td>
+                                                            <td>{{form.line_seven_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_seven_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_eight_quantity}}</td>
+                                                            <td>{{form.line_eight}}</td>
+                                                            <td>{{form.line_eight_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_eight_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_nine_quantity}}</td>
+                                                            <td>{{form.line_nine}}</td>
+                                                            <td>{{form.line_nine_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_nine_total_price }}</span> $</td>
+                                                        </tr>
+                                                        <tr class="linea-producto">
+                                                            <td>{{form.line_ten_quantity}}</td>
+                                                            <td>{{form.line_ten}}</td>
+                                                            <td>{{form.line_ten_unit_price}} $</td>
+                                                            <td><span class="line_amount">{{ form.line_ten_total_price }}</span> $</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <div class="row">
+                                            <!-- accepted payments column -->
+                                            <div class="col-6">
+                                                <p class="text-muted well well-sm shadow-none"
+                                                    style="margin-top: 10px;">
+                                                    <strong>Por favor, conserve esta factura hasta que su vehiculo sea retirado de nuestras instalaciones, no sera posible retirar el vehiculo si no se presenta dicha factura.</strong>
+                                                </p>
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-6">
+                                                <p class="lead"></p>
+
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tr>
+                                                            <th style="width:50%"><label for="subtotal">Subtotal:</label></th>
+                                                            <td>{{form.subtotal}}$</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="vat">VAT</label></th>
+                                                            <td>{{form.vat}}%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="discount">Descuento:</label></th>
+                                                            <td>{{form.discount}}%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="total">Total:</label></th>
+                                                            <td>{{form.total}}$</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><label for="total">Pagada:</label></th>
+                                                            <td>{{form.paid}}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+
+                                        <!-- this row will not appear when printing -->
+                                        <div class="row no-print">
+                                            <div class="col-12">
+                                                <button type="submit" style="margin-right: 5px;" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.invoice -->
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+
+                <!-- Control Sidebar -->
+                <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                </aside>
+                <!-- /.control-sidebar -->
+            </div>
+            <!-- ./wrapper -->
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    
+    // Función para agregar una nueva línea de producto
+    function agregarLinea() {
+        var contador = document.querySelectorAll('.linea-producto').length;
+        
+        if (contador >= 9) {
+            alert('Se ha alcanzado el límite de líneas.');
+            return;
+        }
+
+        var lineaNum = contador + 1;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_two_quantity}}</td>
+                <td>{{form.line_two}}</td>
+                <td>{{form.line_two_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_two_total_price }}</span> $</td>
+                
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_three_quantity}}</td>
+                <td>{{form.line_three}}</td>
+                <td>{{form.line_three_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_three_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_four_quantity}}</td>
+                <td>{{form.line_four}}</td>
+                <td>{{form.line_four_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_four_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_five_quantity}}</td>
+                <td>{{form.line_five}}</td>
+                <td>{{form.line_five_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_five_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_six_quantity}}</td>
+                <td>{{form.line_six}}</td>
+                <td>{{form.line_six_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_six_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_seven_quantity}}</td>
+                <td>{{form.line_seven}}</td>
+                <td>{{form.line_seven_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_seven_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_eight_quantity}}</td>
+                <td>{{form.line_eight}}</td>
+                <td>{{form.line_eight_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_eight_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_nine_quantity}}</td>
+                <td>{{form.line_nine}}</td>
+                <td>{{form.line_nine_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_nine_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        var html = `
+            <tr class="linea-producto">
+                <td>{{form.line_ten_quantity}}</td>
+                <td>{{form.line_ten}}</td>
+                <td>{{form.line_ten_unit_price}} $</td>
+                <td><span class="line_amount">{{ form.line_ten_total_price }}</span> $</td>
+                <td> </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLinea(this)">Eliminar</button>
+                </td>
+            </tr>
+        `;
+        
+
+        document.getElementById('lineas-producto').insertAdjacentHTML('beforeend', html);
+        
+        $(document).onload(function () {
+        
+            $('#id_line_one_quantity, #id_line_one_unit_price, #id_line_two_quantity, #id_line_two_unit_price, #id_line_three_quantity, #id_line_three_unit_price, #id_line_four_quantity, #id_line_four_unit_price, #id_line_five_quantity, #id_line_five_unit_price, #id_line_six_quantity, #id_line_six_unit_price, #id_line_seven_quantity, #id_line_seven_unit_price, #id_line_eight_quantity, #id_line_eight_unit_price, #id_line_nine_quantity, #id_line_nine_unit_price, #id_line_ten_quantity, #id_line_ten_unit_price, #id_vat, #id_discount').keyup(function(){
+                var line_one_quantity_text = $('#id_line_one_quantity').val();
+                var line_one_unit_price_text = $('#id_line_one_unit_price').val();
+                var line_one_total = parseFloat(line_one_quantity_text) * parseFloat(line_one_unit_price_text);
+    
+                var line_two_quantity_text = $('#id_line_two_quantity').val();
+                var line_two_unit_price_text = $('#id_line_two_unit_price').val();
+                var line_two_total = parseFloat(line_two_quantity_text) * parseFloat(line_two_unit_price_text);
+    
+                var line_three_quantity_text = $('#id_line_three_quantity').val();
+                var line_three_unit_price_text = $('#id_line_three_unit_price').val();
+                var line_three_total = parseFloat(line_three_quantity_text) * parseFloat(line_three_unit_price_text);
+    
+                var line_four_quantity_text = $('#id_line_four_quantity').val();
+                var line_four_unit_price_text = $('#id_line_four_unit_price').val();
+                var line_four_total = parseFloat(line_four_quantity_text) * parseFloat(line_four_unit_price_text);
+    
+                var line_five_quantity_text = $('#id_line_five_quantity').val();
+                var line_five_unit_price_text = $('#id_line_five_unit_price').val();
+                var line_five_total = parseFloat(line_five_quantity_text) * parseFloat(line_five_unit_price_text);
+    
+                var line_six_quantity_text = $('#id_line_six_quantity').val();
+                var line_six_unit_price_text = $('#id_line_six_unit_price').val();
+                var line_six_total = parseFloat(line_six_quantity_text) * parseFloat(line_six_unit_price_text);
+    
+                var line_seven_quantity_text = $('#id_line_seven_quantity').val();
+                var line_seven_unit_price_text = $('#id_line_seven_unit_price').val();
+                var line_seven_total = parseFloat(line_seven_quantity_text) * parseFloat(line_seven_unit_price_text);
+    
+                var line_eight_quantity_text = $('#id_line_eight_quantity').val();
+                var line_eight_unit_price_text = $('#id_line_eight_unit_price').val();
+                var line_eight_total = parseFloat(line_eight_quantity_text) * parseFloat(line_eight_unit_price_text);
+    
+                var line_nine_quantity_text = $('#id_line_nine_quantity').val();
+                var line_nine_unit_price_text = $('#id_line_nine_unit_price').val();
+                var line_nine_total = parseFloat(line_nine_quantity_text) * parseFloat(line_nine_unit_price_text);
+    
+                var line_ten_quantity_text = $('#id_line_ten_quantity').val();
+                var line_ten_unit_price_text = $('#id_line_ten_unit_price').val();
+                var line_ten_total = parseFloat(line_ten_quantity_text) * parseFloat(line_ten_unit_price_text);
+    
+                var subtotal = line_one_total + line_two_total + line_three_total + line_four_total + line_five_total + line_six_total + line_seven_total + line_eight_total + line_nine_total + line_ten_total;
+                var vat = $('#id_vat').val();
+                var discount = $('#id_discount').val();
+                var total_with_vat = subtotal * vat;
+                var total = total_with_vat - discount;
+
+                $('#id_line_one_total_price').val(line_one_total);
+                $('#id_line_two_total_price').val(line_two_total);
+                $('#id_line_three_total_price').val(line_three_total);  
+                $('#id_line_four_total_price').val(line_four_total);
+                $('#id_line_five_total_price').val(line_five_total);
+                $('#id_subtotal').val(subtotal);
+                $('#id_vat').val(vat / 100);
+                $('#id_discount').val(discount);
+                $('#id_total_with_vat').val(total_with_vat);
+                $('#id_total').val(total);
+            });
+    
+            
+        });
+    }
+
+    // Función para eliminar una línea de producto
+    function eliminarLinea(btn) {
+        var fila = btn.closest('.linea-producto');
+        fila.remove();
+    }
+
+    // Funcion para calcular totales
+    $(document).ready(function () {
+        function updateTotals(){
+
+        
+        //$('#id_line_one_quantity, #id_line_one_unit_price, #id_line_two_quantity, #id_line_two_unit_price, #id_line_three_quantity, #id_line_three_unit_price, #id_line_four_quantity, #id_line_four_unit_price, #id_line_five_quantity, #id_line_five_unit_price, #id_line_six_quantity, #id_line_six_unit_price, #id_line_seven_quantity, #id_line_seven_unit_price, #id_line_eight_quantity, #id_line_eight_unit_price, #id_line_nine_quantity, #id_line_nine_unit_price, #id_line_ten_quantity, #id_line_ten_unit_price, #id_vat, #id_discount').keyup(function(){
+            var line_one_quantity_text = $('#id_line_one_quantity').val();
+            var line_one_unit_price_text = $('#id_line_one_unit_price').val();
+            var line_one_total = parseFloat(line_one_quantity_text) * parseFloat(line_one_unit_price_text);
+
+            var line_two_quantity_text = $('#id_line_two_quantity').val();
+            var line_two_unit_price_text = $('#id_line_two_unit_price').val();
+            var line_two_total = parseFloat(line_two_quantity_text) * parseFloat(line_two_unit_price_text);
+
+            var line_three_quantity_text = $('#id_line_three_quantity').val();
+            var line_three_unit_price_text = $('#id_line_three_unit_price').val();
+            var line_three_total = parseFloat(line_three_quantity_text) * parseFloat(line_three_unit_price_text);
+
+            var line_four_quantity_text = $('#id_line_four_quantity').val();
+            var line_four_unit_price_text = $('#id_line_four_unit_price').val();
+            var line_four_total = parseFloat(line_four_quantity_text) * parseFloat(line_four_unit_price_text);
+
+            var line_five_quantity_text = $('#id_line_five_quantity').val();
+            var line_five_unit_price_text = $('#id_line_five_unit_price').val();
+            var line_five_total = parseFloat(line_five_quantity_text) * parseFloat(line_five_unit_price_text);
+
+            var line_six_quantity_text = $('#id_line_six_quantity').val();
+            var line_six_unit_price_text = $('#id_line_six_unit_price').val();
+            var line_six_total = parseFloat(line_six_quantity_text) * parseFloat(line_six_unit_price_text);
+
+            var line_seven_quantity_text = $('#id_line_seven_quantity').val();
+            var line_seven_unit_price_text = $('#id_line_seven_unit_price').val();
+            var line_seven_total = parseFloat(line_seven_quantity_text) * parseFloat(line_seven_unit_price_text);
+
+            var line_eight_quantity_text = $('#id_line_eight_quantity').val();
+            var line_eight_unit_price_text = $('#id_line_eight_unit_price').val();
+            var line_eight_total = parseFloat(line_eight_quantity_text) * parseFloat(line_eight_unit_price_text);
+
+            var line_nine_quantity_text = $('#id_line_nine_quantity').val();
+            var line_nine_unit_price_text = $('#id_line_nine_unit_price').val();
+            var line_nine_total = parseFloat(line_nine_quantity_text) * parseFloat(line_nine_unit_price_text);
+
+            var line_ten_quantity_text = $('#id_line_ten_quantity').val();
+            var line_ten_unit_price_text = $('#id_line_ten_unit_price').val();
+            var line_ten_total = parseFloat(line_ten_quantity_text) * parseFloat(line_ten_unit_price_text);
+
+            var subtotal = line_one_total + line_two_total + line_three_total + line_four_total + line_five_total + line_six_total + line_seven_total + line_eight_total + line_nine_total + line_ten_total;
+            var subtotalRounded = subtotal.toFixed(2);
+            var vat = $('#id_vat').val();
+            var total_vat = vat / 100;
+            var discount = $('#id_discount').val();
+            var total = subtotal + (subtotal * total_vat) - (subtotal * discount / 100);
+            var totalRounded = total.toFixed(2);
+
+            $('#id_line_one_total_price').val(line_one_total);
+            $('#id_line_two_total_price').val(line_two_total);
+            $('#id_line_three_total_price').val(line_three_total);
+            $('#id_line_four_total_price').val(line_four_total);
+            $('#id_line_five_total_price').val(line_five_total);
+            $('#id_subtotal').val(subtotalRounded);
+            $('#id_vat').val(vat);
+            $('#id_discount').val(discount);
+            $('#id_total').val(totalRounded);
+        }
+        updateTotals();
+
+        $('#id_line_one_quantity, #id_line_one_unit_price, #id_line_two_quantity, #id_line_two_unit_price, #id_line_three_quantity, #id_line_three_unit_price, #id_line_four_quantity, #id_line_four_unit_price, #id_line_five_quantity, #id_line_five_unit_price, #id_line_six_quantity, #id_line_six_unit_price, #id_line_seven_quantity, #id_line_seven_unit_price, #id_line_eight_quantity, #id_line_eight_unit_price, #id_line_nine_quantity, #id_line_nine_unit_price, #id_line_ten_quantity, #id_line_ten_unit_price, #id_vat, #id_discount').keyup(function(){
+            updateTotals();
+        });
+        setInterval(updateTotals, 1000);
+
+    });
+    
+    
+</script>
+
+
+
+{% endblock %}
